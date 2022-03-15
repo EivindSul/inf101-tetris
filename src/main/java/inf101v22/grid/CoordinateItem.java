@@ -22,7 +22,7 @@ public class CoordinateItem <E> {
         if (!(o instanceof CoordinateItem)) {
             return false;
         }
-        CoordinateItem coordinateItem = (CoordinateItem) o;
+        CoordinateItem<E> coordinateItem = (CoordinateItem<E>) o;
         return Objects.equals(coordinate, coordinateItem.coordinate) && Objects.equals(item, coordinateItem.item);
     }
 

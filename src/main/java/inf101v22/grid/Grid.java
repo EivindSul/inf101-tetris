@@ -17,6 +17,7 @@ public class Grid<E> implements IGrid<E>{
     public Grid(int rows, int cols,E type){
         this.rows = rows;
         this.cols = cols;
+        this.item = type;
         this.grid = new ArrayList<>(rows);
         for (int i = 0; i < rows; i++) {
             ArrayList<E> row = new ArrayList<E>(cols);
@@ -27,12 +28,16 @@ public class Grid<E> implements IGrid<E>{
         }
     }
 
-
-
     @Override
-    public Iterator iterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterator<CoordinateItem<E>> iterator() {
+        ArrayList<CoordinateItem<E>> iteratorList = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                Coordinate coord = new Coordinate(i,j);
+                iteratorList.add(new CoordinateItem<>(coord, this.get(coord)));   
+            }     
+        }
+        return iteratorList.iterator();
     }
 
     @Override
@@ -46,19 +51,28 @@ public class Grid<E> implements IGrid<E>{
     }
 
     @Override
-    public void set(Coordinate coordinate, Object value) {
+    public void set(Coordinate coordinate, E value) {
         int y = coordinate.row;
         int x = coordinate.col;
 
-        this.grid[x].set(y,value);
+        if (!coordinateIsOnGrid(coordinate)) {
+            throw new IndexOutOfBoundsException("Coordinates are out bounds");
+        }
+        grid.get(y).set(x, value);
 
         
     }
 
     @Override
-    public Object get(Coordinate coordinate) {
-        // TODO Auto-generated method stub
-        return null;
+    public E get(Coordinate coordinate) {
+        int y = coordinate.row;
+        int x = coordinate.col;
+
+        if (!coordinateIsOnGrid(coordinate)) {
+            throw new IndexOutOfBoundsException("Coordinates are out bounds");
+        }
+        return grid.get(y).get(x);
+
     }
 
     @Override
@@ -71,7 +85,7 @@ public class Grid<E> implements IGrid<E>{
             return false;
         }
         //Sjekker om koordinaten er høyere eller lik størrelsen til brettet. 
-        if ((row <= this.getRows()) || (col <= this.getCols())){
+        if ((row >= this.getRows()) || (col >= this.getCols())){
             return false;
         }
         //Dette blir som å ha en else statement, bare at det ville vært unødvendig, siden metoden breaker uansett før den kommer her om det er false. 
