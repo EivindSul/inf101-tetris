@@ -8,5 +8,4 @@ public class TetrisBoard<Tile> extends Grid<Tile> {
         super(rows, cols, type);
     }
     
-    
 }

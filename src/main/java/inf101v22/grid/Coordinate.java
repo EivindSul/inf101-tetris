@@ -3,7 +3,6 @@ package inf101v22.grid;
 import java.util.Objects;
 
 public class Coordinate {
-    // TODO: create this class
     public final int row;
     public final int col;
     public Coordinate(int row, int col){

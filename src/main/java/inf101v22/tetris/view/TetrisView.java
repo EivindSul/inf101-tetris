@@ -85,8 +85,8 @@ public class TetrisView extends JComponent {
         // your components; use this.getWidht() and this.getHeight() instead.
         int padding = 20;
         int distance = 30;
-        int preferredWidth = (distance+padding) * 10 + padding;
-        int preferredHeight = (distance + padding) * 15 + padding;
+        int preferredWidth = (distance+padding) * viewable.getCols() + padding;
+        int preferredHeight = (distance + padding) * viewable.getRows() + padding;
         return new Dimension(preferredWidth, preferredHeight);
     }
 }

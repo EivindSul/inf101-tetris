@@ -14,10 +14,10 @@ public class TetrisModel implements TetrisViewable{
         final char a = ' ';
         this.brett = new TetrisBoard<Tile>(15, 10, new Tile(Color.black, a));
 
-        brett.set(new Coordinate(0,0), new Tile(Color.red, 'a'));
-        brett.set(new Coordinate(14,0), new Tile(Color.blue, 'a'));
-        brett.set(new Coordinate(0,9), new Tile(Color.yellow, 'a'));
-        brett.set(new Coordinate(14,9), new Tile(Color.green, 'a'));
+        // brett.set(new Coordinate(0,0), new Tile(Color.red, 'a'));
+        // brett.set(new Coordinate(14,0), new Tile(Color.blue, 'a'));
+        // brett.set(new Coordinate(0,9), new Tile(Color.yellow, 'a'));
+        // brett.set(new Coordinate(14,9), new Tile(Color.green, 'a'));
     }
 
 
@@ -39,8 +39,6 @@ public class TetrisModel implements TetrisViewable{
         // TODO Auto-generated method stub
         return this.brett;
     }
-
-
 
     @Override
     public Iterable<CoordinateItem<Tile>> PieceOnBoard() {
