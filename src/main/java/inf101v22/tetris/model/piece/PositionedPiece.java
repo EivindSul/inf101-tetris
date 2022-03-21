@@ -23,14 +23,26 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         this.shape = shape;
     }
 
+    public PositionedPiece movedPiece(int deltaRow, int deltaCol){
+
+        int row = this.coord.row + deltaRow;
+        int col = this.coord.col + deltaCol;
+
+        Coordinate newCoord = new Coordinate(row, col);
+        PositionedPiece newPiece = new PositionedPiece(this.shape, newCoord);
+
+        return newPiece;
+    }
+
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
+        // TODO fiks uoversiktlige navn, x, y, i, j, row, col henger ikke sammen
         ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
         int x = this.coord.col;
         int y = this.coord.row;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (this.shape.bul[i][j]){
+                if (this.shape.getShape()[i][j]){
                     Coordinate coor = new Coordinate(x+i, y+j);
                     itList.add(new CoordinateItem<Tile>(coor, this.tile));
                 }
@@ -38,18 +50,4 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         }
         return itList.iterator();
     }
-    // public Iterator<CoordinateItem<Tile>> iterator() {
-    //     ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
-    //     int x = this.coord.col;
-    //     int y = this.coord.row;
-    //     for (int i = 0; i < width; i++) {
-    //         for (int j = 0; j < height; j++) {
-    //             if (this.shape.bul[j][i]){
-    //                 Coordinate coor = new Coordinate(x+i, y+j);
-    //                 itList.add(new CoordinateItem<Tile>(coor, this.tile));
-    //             }
-    //         }
-    //     }
-    //     return itList.iterator();
-    // }
 }

@@ -28,6 +28,10 @@ public class PieceShape {
         return bul.length;
     }
 
+    public boolean[][] getShape(){
+        return bul;
+    }
+
 
     static final PieceShape T = new PieceShape(new Tile(Color.magenta, 'T'), new boolean[][] {
         { true ,  true , true  },

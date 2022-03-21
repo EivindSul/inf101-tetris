@@ -8,7 +8,7 @@ import inf101v22.tetris.model.Tile;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+// import java.awt.Font;
 
 public class TetrisView extends JComponent {
     {

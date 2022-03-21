@@ -4,11 +4,12 @@ import java.awt.Color;
 
 import inf101v22.grid.Coordinate;
 import inf101v22.grid.CoordinateItem;
+import inf101v22.tetris.controller.TetrisControllable;
 import inf101v22.tetris.model.piece.PositionedPiece;
 import inf101v22.tetris.model.piece.PositionedPieceFactory;
 import inf101v22.tetris.view.TetrisViewable;
 
-public class TetrisModel implements TetrisViewable{
+public class TetrisModel implements TetrisViewable, TetrisControllable{
 
     public TetrisBoard<Tile> brett;
     public PositionedPiece posPiece;
@@ -33,26 +34,46 @@ public class TetrisModel implements TetrisViewable{
 
     @Override
     public int getRows() {
-        // TODO Auto-generated method stub
         return this.brett.getRows();
     }
 
     @Override
     public int getCols() {
-        // TODO Auto-generated method stub
         return this.brett.getCols();
     }
 
     @Override
     public Iterable<CoordinateItem<Tile>> TilesOnBoard() {
-        // TODO Auto-generated method stub
         return this.brett;
     }
 
     @Override
     public Iterable<CoordinateItem<Tile>> PieceOnBoard() {
-        // TODO Auto-generated method stub
         return this.posPiece;
     }
+
+    @Override
+    public boolean moveFallingPiece(int deltaRow, int deltaCol) {
+        PositionedPiece movedPiece = posPiece.movedPiece(deltaRow, deltaCol);
+        if (this.legalMove(movedPiece)){
+            this.posPiece = movedPiece;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean legalMove(PositionedPiece piece){
+        for (CoordinateItem<Tile> coordinateItem : piece) {
+            Coordinate kord = coordinateItem.coordinate;
+            if (!brett.coordinateIsOnGrid(kord)){
+                return false;
+            }
+            if (brett.get(kord) == null){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     
 }

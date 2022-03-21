@@ -36,5 +36,5 @@ public interface IGrid<E> extends Iterable<CoordinateItem<E>> {
      * @param coordinate coordinate to check
      * @return true if the coordinate is within bounds, false otherwise
      */
-    boolean coordinateIsOnGrid(Coordinate coordinate);
+    public boolean coordinateIsOnGrid(Coordinate coordinate);
 }
