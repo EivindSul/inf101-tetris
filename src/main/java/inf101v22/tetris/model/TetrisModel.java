@@ -24,10 +24,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         posFac.setCenterColumn(brett.getCols() / 2);
         posPiece = posFac.getNextPositionedPiece();
 
-        // brett.set(new Coordinate(0,0), new Tile(Color.red, 'a'));
-        // brett.set(new Coordinate(14,0), new Tile(Color.blue, 'a'));
-        // brett.set(new Coordinate(0,9), new Tile(Color.yellow, 'a'));
-        // brett.set(new Coordinate(14,9), new Tile(Color.green, 'a'));
+        brett.set(new Coordinate(0,0), new Tile(Color.red, 'a'));
+        brett.set(new Coordinate(14,0), new Tile(Color.blue, 'a'));
+        brett.set(new Coordinate(0,9), new Tile(Color.yellow, 'a'));
+        brett.set(new Coordinate(14,9), new Tile(Color.green, 'a'));
     }
 
 
@@ -68,7 +68,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             if (!brett.coordinateIsOnGrid(kord)){
                 return false;
             }
-            if (brett.get(kord) == null){
+            if (brett.get(kord).farge != Color.black){
                 return false;
             }
         }
