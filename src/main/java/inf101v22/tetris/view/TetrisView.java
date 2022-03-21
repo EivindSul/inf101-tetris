@@ -38,14 +38,15 @@ public class TetrisView extends JComponent {
     }
 
     public void drawTetrisBoard(Graphics canvas, int x, int y, int width, int height, int padding){
-        drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding); //, this.viewable.TilesOnBoard());
-        // drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.PieceOnBoard());
+        drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.TilesOnBoard());
+        drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.PieceOnBoard());
     }
-    // private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding, Iterable<CoordinateItem<Tile>> piecePaint) {
-    private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding) {
+    private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding, Iterable<CoordinateItem<Tile>> piecePaint) {
+    // private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding) {
 
-        for (CoordinateItem<Tile> coordinateItem : this.viewable.TilesOnBoard()) {
-            int row = coordinateItem.coordinate.row;
+        //for (CoordinateItem<Tile> coordinateItem : this.viewable.TilesOnBoard()) {
+        for (CoordinateItem<Tile> coordinateItem : piecePaint) {
+        int row = coordinateItem.coordinate.row;
             int col = coordinateItem.coordinate.col;
             Tile tile = coordinateItem.item;
             Color color;

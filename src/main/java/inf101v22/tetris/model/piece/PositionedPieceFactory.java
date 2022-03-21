@@ -6,20 +6,13 @@ import inf101v22.grid.Coordinate;
 
 public class PositionedPieceFactory {
     
-    int centerCol = 4;
-
+    int centerCol;
 
     // Dette er litt forskjellig i forhold til hva oppgaven ber om, men det var forvirrende beskrivelse, så eg bare lagde det eg syntes var logisk.
-    int setCenterColumn(int difference){
+    public void setCenterColumn(int center){
         // TODO add check if within board
-        centerCol = centerCol + difference;
-        return centerCol;
+        this.centerCol = center;
     }
-
-    int getCenterColumn(){
-        return centerCol;
-    }
-
 
     public PositionedPiece getNextPositionedPiece(){
         PieceShape piece;
@@ -31,7 +24,7 @@ public class PositionedPieceFactory {
         piece = PieceShape.STANDARD_TETRIS_PIECES[randNo];
 
         int pieceCenter = this.centerCol - (piece.getWidth() / 2);
-        posPiece = new PositionedPiece(piece, new Coordinate(0, pieceCenter));
+        posPiece = new PositionedPiece(piece, new Coordinate(pieceCenter, 0));
 
         return posPiece;
     }

@@ -28,9 +28,9 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
         int x = this.coord.col;
         int y = this.coord.row;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (this.shape.bul[j][i]){
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (this.shape.bul[i][j]){
                     Coordinate coor = new Coordinate(x+i, y+j);
                     itList.add(new CoordinateItem<Tile>(coor, this.tile));
                 }
@@ -38,4 +38,18 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         }
         return itList.iterator();
     }
+    // public Iterator<CoordinateItem<Tile>> iterator() {
+    //     ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
+    //     int x = this.coord.col;
+    //     int y = this.coord.row;
+    //     for (int i = 0; i < width; i++) {
+    //         for (int j = 0; j < height; j++) {
+    //             if (this.shape.bul[j][i]){
+    //                 Coordinate coor = new Coordinate(x+i, y+j);
+    //                 itList.add(new CoordinateItem<Tile>(coor, this.tile));
+    //             }
+    //         }
+    //     }
+    //     return itList.iterator();
+    // }
 }

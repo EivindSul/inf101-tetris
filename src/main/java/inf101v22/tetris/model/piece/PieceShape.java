@@ -40,7 +40,7 @@ public class PieceShape {
         });
     
     static final PieceShape Z = new PieceShape(new Tile(Color.red, 'Z'), new boolean[][] {
-        { true ,  true , true  },
+        { true ,  true , false },
         { false,  true , true  }
         });
         
