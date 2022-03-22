@@ -3,6 +3,7 @@ package inf101v22.tetris.view;
 import javax.swing.JComponent;
 
 import inf101v22.grid.CoordinateItem;
+import inf101v22.tetris.model.GameScreen;
 import inf101v22.tetris.model.Tile;
 
 import java.awt.Graphics;
@@ -40,6 +41,9 @@ public class TetrisView extends JComponent {
     public void drawTetrisBoard(Graphics canvas, int x, int y, int width, int height, int padding){
         drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.TilesOnBoard());
         drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.PieceOnBoard());
+        if (viewable.getGameScreen() == GameScreen.GAME_OVER){
+            drawGameOverScreen(canvas);
+        }
     }
     private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding, Iterable<CoordinateItem<Tile>> piecePaint) {
     // private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding) {
@@ -75,7 +79,10 @@ public class TetrisView extends JComponent {
         canvas.fillRect(x, y, width - padding, height - padding);
     }
 
-
+    private void drawGameOverScreen(Graphics canvas){
+        canvas.setColor(new Color(0, 0, 0, 128));
+        canvas.fillRect(0, 0, this.getWidth(), this.getHeight());
+    }
 
 
     @Override

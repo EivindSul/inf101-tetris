@@ -15,10 +15,13 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public PositionedPiece posPiece;
     public PositionedPieceFactory posFac;
 
+    public GameScreen GameScreen;
+
 
 
     public TetrisModel(){
         final char a = ' ';
+        this.GameScreen = GameScreen.ACITVE_GAME;
         this.brett = new TetrisBoard<Tile>(15, 10, new Tile(Color.black, a));
         this.posFac = new PositionedPieceFactory();
         posFac.setCenterColumn(brett.getCols() / 2);
@@ -112,11 +115,19 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return true;
     }
 
-    public void newFallingPiece() {
-        boolean gameOver = false;
-        if (!gameOver){
-            posPiece = posFac.getNextPositionedPiece();
+    public boolean newFallingPiece() {
+        
+        PositionedPiece newPiece = posFac.getNextPositionedPiece();
+        if (!this.legalMove(newPiece)){
+            this.GameScreen = GameScreen.GAME_OVER;
+            return false;
         }
+        else{
+            posPiece = newPiece;
+            return true;
+        }
+        
+        
     }
 
     public void gluepiece(){
@@ -126,6 +137,13 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             this.brett.set(coordinate, value);
         }
         this.newFallingPiece();
+    }
+
+
+
+    @Override
+    public inf101v22.tetris.model.GameScreen getGameScreen() {
+        return this.GameScreen;
     }
 
 
