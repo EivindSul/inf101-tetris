@@ -59,7 +59,33 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             this.posPiece = movedPiece;
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean rotatePiece() {
+        PositionedPiece rotatedPiece = posPiece.rotatePiece();
+        if(this.legalMove(rotatedPiece)){
+            this.posPiece = rotatedPiece;
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public boolean PressP() {
+        PositionedPiece P = posPiece.kuk();
+        if(this.legalMove(P)){
+            this.posPiece = P;
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public boolean legalMove(PositionedPiece piece){
@@ -74,6 +100,38 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         }
         return true;
     }
+
+    @Override
+    public boolean dropPiece() {
+        while (true){
+            if(!this.moveFallingPiece(0, 1)){
+                break;
+            }
+        }
+        this.gluepiece();
+        return true;
+    }
+
+    public void newFallingPiece() {
+        boolean gameOver = false;
+        if (!gameOver){
+            posPiece = posFac.getNextPositionedPiece();
+        }
+    }
+
+    public void gluepiece(){
+        for (CoordinateItem<Tile> coordinateItem : this.posPiece) {
+            Coordinate coordinate = coordinateItem.coordinate;
+            Tile value = coordinateItem.item;
+            this.brett.set(coordinate, value);
+        }
+        this.newFallingPiece();
+    }
+
+
+
+
+
     
     
 }

@@ -1,6 +1,7 @@
 package inf101v22.tetris.model.piece;
 
 import java.awt.Color;
+import java.lang.reflect.Array;
 
 import inf101v22.tetris.model.Tile;
 
@@ -30,6 +31,37 @@ public class PieceShape {
 
     public boolean[][] getShape(){
         return bul;
+    }
+
+    // public PieceShape createRotated(){
+    //     boolean[][] shape = this.getShape();
+    //     boolean[][] newShape = new boolean[][]{};
+    //     PieceShape rotated;
+
+    //     for (int i = 0; i < this.getHeight(); i++) {
+    //         boolean[] row = new boolean[]{};
+    //         for (int j = 0; j < this.getWidth(); j++) {
+    //             row[j] = shape[j][this.getWidth()-i-1];
+    //         }
+    //         newShape[i] = (row);
+    //     }
+    //     rotated = new PieceShape(this.getTile(), newShape);
+    //     return rotated;
+    // }
+    public PieceShape createRotated(){
+        boolean[][] shape = this.getShape();
+        boolean[][] newShape = new boolean[this.getWidth()][this.getHeight()];
+        PieceShape rotated;
+
+        for (int i = 0; i < this.getWidth(); i++) {
+            boolean[] row = new boolean[this.getHeight()];
+            for (int j = 0; j < this.getHeight(); j++) {
+                row[j] = shape[j][this.getWidth()-i-1];
+            }
+            newShape[i] = (row);
+        }
+        rotated = new PieceShape(this.getTile(), newShape);
+        return rotated;
     }
 
 
@@ -66,6 +98,13 @@ public class PieceShape {
         { true ,  true },
         { true ,  true }
         });
+
+    static final PieceShape KUK = new PieceShape(new Tile(Color.pink, 'K'), new boolean[][]{
+        {false, true, false},
+        {false, true, false},
+        {false, true, false},
+        {true, true, true}
+    });
 
     static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
             

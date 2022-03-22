@@ -34,6 +34,25 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         return newPiece;
     }
 
+    public PositionedPiece rotatePiece(){
+        PieceShape rotated = this.shape.createRotated();
+
+        int rotatedHeightAdjusted = -1 + rotated.getHeight() / 2;
+        int rotatedWidthAdjusted = -1 + rotated.getWidth() / 2;
+
+        Coordinate newUpperLeftCorner = new Coordinate(this.coord.row + rotatedHeightAdjusted, this.coord.col + rotatedWidthAdjusted);
+
+        PositionedPiece rotatedPositioned = new PositionedPiece(rotated, newUpperLeftCorner);
+
+        return rotatedPositioned;
+    }
+
+    public PositionedPiece kuk(){
+        PieceShape kuk = this.shape.KUK;
+        PositionedPiece PositionedKuk = new PositionedPiece(kuk, this.coord);
+        return PositionedKuk;
+    }
+
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
         // TODO fiks uoversiktlige navn, x, y, i, j, row, col henger ikke sammen

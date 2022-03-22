@@ -33,9 +33,14 @@ public class TetrisController implements java.awt.event.KeyListener{
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
             // Up arrow was pressed
+            this.controllable.rotatePiece();
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             // Spacebar was pressed
+            this.controllable.dropPiece();
+        }        
+        else if (e.getKeyCode() == KeyEvent.VK_P) {
+            this.controllable.PressP();
         }
         view.repaint();
         
