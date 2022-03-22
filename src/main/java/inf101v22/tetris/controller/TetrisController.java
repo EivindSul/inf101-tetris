@@ -19,8 +19,8 @@ public class TetrisController implements java.awt.event.KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
-        if (this.controllable.getGameScreen() != GameScreen.GAME_OVER){
+
+        if (this.controllable.getGameScreen() == GameScreen.ACITVE_GAME){
 
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Left arrow was pressed

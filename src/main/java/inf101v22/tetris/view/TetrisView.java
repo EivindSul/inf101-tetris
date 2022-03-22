@@ -9,7 +9,7 @@ import inf101v22.tetris.model.Tile;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
-// import java.awt.Font;
+import java.awt.Font;
 
 public class TetrisView extends JComponent {
     {
@@ -82,6 +82,12 @@ public class TetrisView extends JComponent {
     private void drawGameOverScreen(Graphics canvas){
         canvas.setColor(new Color(0, 0, 0, 128));
         canvas.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+        Font myFont = new Font("SansSerif", Font.BOLD, 20);
+        canvas.setFont(myFont);
+        canvas.setColor(Color.WHITE);
+        GraphicHelperMethods.drawCenteredString(
+                canvas, "GAME OVER", 0, 0, this.getWidth(), (this.getHeight()/3)*2);
     }
 
 
