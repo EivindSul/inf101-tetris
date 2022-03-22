@@ -53,12 +53,12 @@ public class PieceShape {
         boolean[][] newShape = new boolean[this.getWidth()][this.getHeight()];
         PieceShape rotated;
 
-        for (int i = 0; i < this.getWidth(); i++) {
+        for (int x = 0; x < this.getWidth(); x++) {
             boolean[] row = new boolean[this.getHeight()];
-            for (int j = 0; j < this.getHeight(); j++) {
-                row[j] = shape[j][this.getWidth()-i-1];
+            for (int y = 0; y < this.getHeight(); y++) {
+                row[y] = shape[y][this.getWidth()-x-1];
             }
-            newShape[i] = (row);
+            newShape[x] = (row);
         }
         rotated = new PieceShape(this.getTile(), newShape);
         return rotated;

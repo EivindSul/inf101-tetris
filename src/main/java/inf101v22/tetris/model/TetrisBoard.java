@@ -13,10 +13,9 @@ public class TetrisBoard<flis> extends Grid<Tile> {
     }
     
     public boolean checkForBlackTiles(int row) {
-        Tile tile;
+        //Tile emptyTile = new Tile(Color.BLACK, ' ');
         for (int i = 0; i < this.getCols(); i++) {
-            tile = new Tile(Color.BLACK, ' ');
-            if(this.get(new Coordinate(row, i)) == tile){
+            if(this.get(new Coordinate(row, i)).farge == Color.BLACK){
                 return true;
             }
         }
@@ -30,23 +29,25 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         }
     }
 
+    // Skal flytte alle rader over den døde ned en.
     public void dropRow(int deadRow){
-        for (int i = 0; i < this.getCols(); i++) {
-            Coordinate oldCoordinate = new Coordinate(deadRow - 1, i);
-            Coordinate newCoordinate = new Coordinate(deadRow, i);
-
-            Tile value = this.get(oldCoordinate);
-            this.set(newCoordinate, value);
+        for (int j = deadRow; j > 0; j--) {
+            for (int i = 0; i < this.getCols(); i++) {
+                Coordinate oldCoordinate = new Coordinate(j - 1, i);
+                Coordinate newCoordinate = new Coordinate(j, i);
+    
+                Tile value = this.get(oldCoordinate);
+                this.set(newCoordinate, value);
+            }
         }
     }
 
     public void removeFullRows(){
-        System.out.println("running removeFullRows...");
+        // Sjekker alle rows for fulle rader. 
         for (int row = this.getRows()-1; row > 0; row--) {
-            System.out.println("running for loop, i = " + row);
             if(!checkForBlackTiles(row)){
-
                 dropRow(row);
+                row++;
             }
         }
     }
