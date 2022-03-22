@@ -82,7 +82,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     }
 
     public boolean PressP() {
-        PositionedPiece P = posPiece.kuk();
+        PositionedPiece P = posPiece.test_shape();
         if(this.legalMove(P)){
             this.posPiece = P;
             return true;
@@ -113,6 +113,8 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             }
         }
         this.gluepiece();
+        brett.removeFullRows();
+        this.newFallingPiece();
         return true;
     }
 
@@ -137,7 +139,6 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             Tile value = coordinateItem.item;
             this.brett.set(coordinate, value);
         }
-        this.newFallingPiece();
     }
 
 

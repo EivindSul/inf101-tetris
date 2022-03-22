@@ -11,7 +11,7 @@ public class TetrisBoard<flis> extends Grid<Tile> {
     public TetrisBoard(int rows, int cols, Tile type) {
         super(rows, cols, type);
     }
-    // kommer ikke til å funke
+    
     public boolean checkForBlackTiles(int row) {
         Tile tile;
         for (int i = 0; i < this.getCols(); i++) {
@@ -37,6 +37,17 @@ public class TetrisBoard<flis> extends Grid<Tile> {
 
             Tile value = this.get(oldCoordinate);
             this.set(newCoordinate, value);
+        }
+    }
+
+    public void removeFullRows(){
+        System.out.println("running removeFullRows...");
+        for (int row = this.getRows()-1; row > 0; row--) {
+            System.out.println("running for loop, i = " + row);
+            if(!checkForBlackTiles(row)){
+
+                dropRow(row);
+            }
         }
     }
 

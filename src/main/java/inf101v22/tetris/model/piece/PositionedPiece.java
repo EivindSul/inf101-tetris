@@ -47,10 +47,10 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         return rotatedPositioned;
     }
 
-    public PositionedPiece kuk(){
-        PieceShape kuk = this.shape.KUK;
-        PositionedPiece PositionedKuk = new PositionedPiece(kuk, this.coord);
-        return PositionedKuk;
+    public PositionedPiece test_shape(){
+        PieceShape test = PieceShape.test_shape;
+        PositionedPiece PositionedShape = new PositionedPiece(test, this.coord);
+        return PositionedShape;
     }
 
     @Override

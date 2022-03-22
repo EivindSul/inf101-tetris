@@ -99,7 +99,7 @@ public class PieceShape {
         { true ,  true }
         });
 
-    static final PieceShape KUK = new PieceShape(new Tile(Color.pink, 'K'), new boolean[][]{
+    static final PieceShape test_shape = new PieceShape(new Tile(Color.pink, 'K'), new boolean[][]{
         {false, true, false},
         {false, true, false},
         {false, true, false},
