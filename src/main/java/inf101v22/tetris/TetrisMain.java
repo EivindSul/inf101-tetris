@@ -1,9 +1,7 @@
 package inf101v22.tetris;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import inf101v22.tetris.controller.TetrisControllable;
 import inf101v22.tetris.controller.TetrisController;
 import inf101v22.tetris.model.TetrisModel;
 import inf101v22.tetris.view.TetrisView;

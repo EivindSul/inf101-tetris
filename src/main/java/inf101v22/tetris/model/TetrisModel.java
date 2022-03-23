@@ -14,7 +14,8 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public TetrisBoard<Tile> brett;
     public PositionedPiece posPiece;
     public PositionedPieceFactory posFac;
-
+    public int startInterval = 1000; // Intervallet imellom flytting i starten er 2 sekunder
+    public int piecesSpawned = 1;
     public GameScreen GameScreen;
 
 
@@ -33,8 +34,6 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         // brett.set(new Coordinate(0,9), new Tile(Color.yellow, 'a'));
         // brett.set(new Coordinate(14,9), new Tile(Color.green, 'a'));
     }
-
-
 
     @Override
     public int getRows() {
@@ -112,40 +111,55 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
                 break;
             }
         }
-        this.gluepiece();
-        brett.removeFullRows();
-        this.newFallingPiece();
+        this.gluePiece();
         return true;
     }
 
     public boolean newFallingPiece() {
-        
         PositionedPiece newPiece = posFac.getNextPositionedPiece();
         if (!this.legalMove(newPiece)){
-            this.GameScreen = GameScreen.GAME_OVER;
+            this.GameScreen = inf101v22.tetris.model.GameScreen.GAME_OVER;
             return false;
         }
         else{
             posPiece = newPiece;
+            this.piecesSpawned++;
             return true;
         }
-        
-        
     }
 
-    public void gluepiece(){
+    public void gluePiece(){
         for (CoordinateItem<Tile> coordinateItem : this.posPiece) {
             Coordinate coordinate = coordinateItem.coordinate;
             Tile value = coordinateItem.item;
             this.brett.set(coordinate, value);
         }
+        brett.removeFullRows();
+        this.newFallingPiece();
     }
-
-
 
     @Override
     public inf101v22.tetris.model.GameScreen getGameScreen() {
         return this.GameScreen;
+    }
+
+    @Override
+    public int getInterval() {
+        int interval =(int)Math.round(this.startInterval * (Math.pow(0.99, piecesSpawned)));
+        return interval; 
+    }
+
+    @Override
+    public void clockTick() {
+        if(!this.moveFallingPiece(0, 1)){
+            this.gluePiece();
+        }
+    }
+
+    @Override
+    public boolean checkLegalBelow() {
+        PositionedPiece checkPiece = posPiece;
+        return (this.legalMove(checkPiece.movedPiece(0, 1)));
     }
 
 

@@ -3,7 +3,6 @@ package inf101v22.tetris.model;
 import java.awt.Color;
 
 import inf101v22.grid.Coordinate;
-import inf101v22.grid.CoordinateItem;
 import inf101v22.grid.Grid;
 
 public class TetrisBoard<flis> extends Grid<Tile> {
@@ -12,8 +11,9 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         super(rows, cols, type);
     }
     
+    // Sjekker ikke etter tomme ruter, men heller etter svarte. Det er i praksis det samme, siden min default-verdi er en svart Tile. 
     public boolean checkForBlackTiles(int row) {
-        //Tile emptyTile = new Tile(Color.BLACK, ' ');
+        // Sjekker hver rute i rekken. Hvis det finnes en eneste svart, så trenger vi ikke å vite mer, så den returnerer true.
         for (int i = 0; i < this.getCols(); i++) {
             if(this.get(new Coordinate(row, i)).farge == Color.BLACK){
                 return true;
@@ -21,7 +21,7 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         }
         return false;
     }
-
+    // Ubrukt, men ble foreslått å ha som hjelpemetode. 
     public void fillRowWithValue(int row, Tile value){
         for (int i = 0; i < this.getCols(); i++) {
             Coordinate coordinate = new Coordinate(row, i);
@@ -43,17 +43,13 @@ public class TetrisBoard<flis> extends Grid<Tile> {
     }
 
     public void removeFullRows(){
-        // Sjekker alle rows for fulle rader. 
+        // Sjekker alle rows for fulle rader. Hvis BlackTiles metoden returnerer false, er rekken full.
         for (int row = this.getRows()-1; row > 0; row--) {
             if(!checkForBlackTiles(row)){
+                // Hvis rekken blir fjernet, og alle rekkene faller, sjekk samme rekke igjen
                 dropRow(row);
                 row++;
             }
         }
     }
-
-
-
-
-    
 }

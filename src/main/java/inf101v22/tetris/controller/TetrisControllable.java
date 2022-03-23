@@ -9,5 +9,8 @@ public interface TetrisControllable {
     public boolean rotatePiece();
     public boolean dropPiece();
     public boolean PressP();
+    public int getInterval();
+    public void clockTick();
+    public boolean checkLegalBelow();
     public GameScreen getGameScreen();
 }
