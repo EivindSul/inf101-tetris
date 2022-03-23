@@ -12,7 +12,6 @@ public class TetrisMain {
     public static void main(String[] args) {
         TetrisModel model = new TetrisModel();
         TetrisView view = new TetrisView(model);
-        //TetrisController controller = 
         new TetrisController(model, view);
           
         // The JFrame is the "root" application window.
