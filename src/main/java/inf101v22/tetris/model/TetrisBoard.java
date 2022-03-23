@@ -21,7 +21,8 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         }
         return false;
     }
-    // Ubrukt, men ble foreslått å ha som hjelpemetode. 
+    // Ubrukt, men ble foreslått i oppgaveteksten å lage denne som hjelpemetode. 
+    // Kan kanskje være nyttig i gamemodes eller noe sånn? 
     public void fillRowWithValue(int row, Tile value){
         for (int i = 0; i < this.getCols(); i++) {
             Coordinate coordinate = new Coordinate(row, i);
@@ -29,8 +30,8 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         }
     }
 
-    // Skal flytte alle rader over den døde ned en.
-    public void dropRow(int deadRow){
+    // Skal flytte alle rader over den døde ned med en.
+    public void killRow(int deadRow){
         for (int j = deadRow; j > 0; j--) {
             for (int i = 0; i < this.getCols(); i++) {
                 Coordinate oldCoordinate = new Coordinate(j - 1, i);
@@ -46,8 +47,8 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         // Sjekker alle rows for fulle rader. Hvis BlackTiles metoden returnerer false, er rekken full.
         for (int row = this.getRows()-1; row > 0; row--) {
             if(!checkForBlackTiles(row)){
-                // Hvis rekken blir fjernet, og alle rekkene faller, sjekk samme rekke igjen
-                dropRow(row);
+                // Hvis rekken blir fjernet, og alle rekkene faller, sjekk samme rekke igjen. Derfor row++
+                killRow(row);
                 row++;
             }
         }

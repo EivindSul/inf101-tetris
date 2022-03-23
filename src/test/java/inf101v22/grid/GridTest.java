@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
  * Testing the class Grid
  */
 public class GridTest {
-    //TODO: Uncomment these tests and make them pass by creating a class Grid which implements IGrid
 
     @Test
     void gridTestGetRowsAndCols() {

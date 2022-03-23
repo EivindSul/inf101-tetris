@@ -161,11 +161,4 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         PositionedPiece checkPiece = posPiece;
         return (this.legalMove(checkPiece.movedPiece(0, 1)));
     }
-
-
-
-
-
-    
-    
 }
