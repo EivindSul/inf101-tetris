@@ -55,18 +55,33 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
 
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
-        // TODO fiks uoversiktlige navn, x, y, i, j, row, col henger ikke sammen
         ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
         int x = this.coord.col;
         int y = this.coord.row;
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (this.shape.getShape()[i][j]){
-                    Coordinate coor = new Coordinate(x+i, y+j);
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                if (this.shape.getShape()[row][col]){
+                    Coordinate coor = new Coordinate(x+row, y+col);
                     itList.add(new CoordinateItem<Tile>(coor, this.tile));
                 }
             }
         }
         return itList.iterator();
     }
+    // @Override
+    // public Iterator<CoordinateItem<Tile>> iterator() {
+    //     // TODO fiks uoversiktlige navn, x, y, i, j, row, col henger ikke sammen
+    //     ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
+    //     int x = this.coord.col;
+    //     int y = this.coord.row;
+    //     for (int i = 0; i < height; i++) {
+    //         for (int j = 0; j < width; j++) {
+    //             if (this.shape.getShape()[i][j]){
+    //                 Coordinate coor = new Coordinate(x+i, y+j);
+    //                 itList.add(new CoordinateItem<Tile>(coor, this.tile));
+    //             }
+    //         }
+    //     }
+    //     return itList.iterator();
+    // }
 }

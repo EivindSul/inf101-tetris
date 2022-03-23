@@ -23,7 +23,7 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
         this.setDelay();
         this.view.addKeyListener(this);
         this.timer.start();
-        this.song.run();
+        // this.song.run(); EG GIDDER IKKE SANGEN MER
     }
 
     @Override
@@ -34,10 +34,16 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 // Left arrow was pressed
                 this.controllable.moveFallingPiece(-1, 0);
+                if(!this.controllable.checkLegalBelow()){
+                    timer.restart();
+                }
             }
             else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 // Right arrow was pressed
                 this.controllable.moveFallingPiece(1, 0);
+                if(!this.controllable.checkLegalBelow()){
+                    timer.restart();
+                }
             }
             else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 // Down arrow was pressed

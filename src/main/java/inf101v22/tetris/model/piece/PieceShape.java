@@ -91,8 +91,4 @@ public class PieceShape {
     });
 
     static final PieceShape[] STANDARD_TETRIS_PIECES = { T, S, Z, I, J, L, O };
-            
-
-
-
 }
