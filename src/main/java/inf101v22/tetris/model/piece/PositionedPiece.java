@@ -56,6 +56,7 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
         ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
+        // HVORFOR ER X COORD.COL I LINJE 60, MEN EG MÅ HA Y+COL FOR Å FÅ BRIKKENE TIL Å FALLE NEDOVER I LINJE 65
         int x = this.coord.col;
         int y = this.coord.row;
         for (int row = 0; row < height; row++) {

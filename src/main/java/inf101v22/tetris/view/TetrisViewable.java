@@ -13,5 +13,5 @@ public interface TetrisViewable {
     Iterable<CoordinateItem<Tile>> PieceOnBoard();
 
     public GameScreen getGameScreen();
-
+    public int getScore(); 
 }

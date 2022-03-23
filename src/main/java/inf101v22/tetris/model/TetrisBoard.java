@@ -6,6 +6,8 @@ import inf101v22.grid.Coordinate;
 import inf101v22.grid.Grid;
 
 public class TetrisBoard<flis> extends Grid<Tile> {
+
+    int score = 0;
     
     public TetrisBoard(int rows, int cols, Tile type) {
         super(rows, cols, type);
@@ -21,6 +23,11 @@ public class TetrisBoard<flis> extends Grid<Tile> {
         }
         return false;
     }
+
+    public int getScore(){
+        return this.score;
+    }
+
     // Ubrukt, men ble foreslått i oppgaveteksten å lage denne som hjelpemetode. 
     // Kan kanskje være nyttig i gamemodes eller noe sånn? 
     public void fillRowWithValue(int row, Tile value){
@@ -45,12 +52,15 @@ public class TetrisBoard<flis> extends Grid<Tile> {
 
     public void removeFullRows(){
         // Sjekker alle rows for fulle rader. Hvis BlackTiles metoden returnerer false, er rekken full.
+        int streak = 0;
         for (int row = this.getRows()-1; row > 0; row--) {
             if(!checkForBlackTiles(row)){
                 // Hvis rekken blir fjernet, og alle rekkene faller, sjekk samme rekke igjen. Derfor row++
                 killRow(row);
                 row++;
+                streak++;
             }
         }
+        score += streak * streak;
     }
 }

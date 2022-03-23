@@ -16,6 +16,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public PositionedPieceFactory posFac;
     public int startInterval = 1000; // Intervallet imellom flytting i starten er 1 sekund
     public int piecesSpawned = 1;
+    public int score;
     public GameScreen GameScreen;
 
 
@@ -160,4 +161,11 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         PositionedPiece checkPiece = posPiece;
         return (this.legalMove(checkPiece.movedPiece(0, 1)));
     }
+
+    @Override
+    public int getScore() {
+        return brett.getScore();
+    }
+
+    
 }

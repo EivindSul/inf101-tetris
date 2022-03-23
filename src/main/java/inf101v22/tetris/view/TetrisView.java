@@ -86,8 +86,13 @@ public class TetrisView extends JComponent {
         Font myFont = new Font("SansSerif", Font.BOLD, 20);
         canvas.setFont(myFont);
         canvas.setColor(Color.WHITE);
-        GraphicHelperMethods.drawCenteredString(
-                canvas, "GAME OVER", 0, 0, this.getWidth(), (this.getHeight()/3)*2);
+
+        int width = this.getWidth();
+        int height = (this.getHeight()/3)*2;
+
+        // Skulle gjerne gjort begge disse samtidig, men linjeskift ville absolutt ikke fungere
+        GraphicHelperMethods.drawCenteredString(canvas, "GAME OVER", 0, 0, width, height);
+        GraphicHelperMethods.drawCenteredString(canvas, "SCORE: " + viewable.getScore(), 0, 0, width, height + 75);
     }
 
 
