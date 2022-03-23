@@ -14,7 +14,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public TetrisBoard<Tile> brett;
     public PositionedPiece posPiece;
     public PositionedPieceFactory posFac;
-    public int startInterval = 1000; // Intervallet imellom flytting i starten er 2 sekunder
+    public int startInterval = 1000; // Intervallet imellom flytting i starten er 1 sekund
     public int piecesSpawned = 1;
     public GameScreen GameScreen;
 
@@ -23,7 +23,6 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public TetrisModel(){
         final char a = ' ';
         this.GameScreen = inf101v22.tetris.model.GameScreen.ACITVE_GAME;
-        // this.brett = new TetrisBoard<Tile>(15, 10);
         this.brett = new TetrisBoard<Tile>(15, 10, new Tile(Color.black, a));
         this.posFac = new PositionedPieceFactory();
         posFac.setCenterColumn(brett.getCols() / 2);
