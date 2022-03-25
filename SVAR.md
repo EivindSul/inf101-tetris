@@ -11,7 +11,7 @@ Bra:
 
 
 Dårlig:
-    Kunne godt ha skrevet en sjekkOmLedigPlassUnder metode, siden det var flere metoder som hadde hatt nytte av den. Eller bare en sjekkOmLovligFlytt funksjon, som ligner på legalMove metoden, men som tar deltaX og deltaY som argumenter, i stedet for en PieceShape. 
+    Kunne godt ha skrevet en sjekkOmLedigPlassUnder metode, siden det var flere metoder som hadde hatt nytte av den. Eller bare en sjekkOmLovligFlytt funksjon, som ligner på TetrisModel.legalMove metoden, men som tar deltaX og deltaY som argumenter, i stedet for en PieceShape. 
 
 ## Hvilke grep gjør vi for å øke modulariteten i koden? Gi noen eksempeler.
 

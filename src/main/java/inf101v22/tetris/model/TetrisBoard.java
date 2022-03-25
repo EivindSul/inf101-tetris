@@ -7,7 +7,7 @@ import inf101v22.grid.Grid;
 
 public class TetrisBoard<flis> extends Grid<Tile> {
 
-    int score = 0;
+    private int score = 0;
     
     public TetrisBoard(int rows, int cols, Tile type) {
         super(rows, cols, type);
