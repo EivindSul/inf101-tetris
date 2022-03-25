@@ -18,7 +18,7 @@ public class TetrisModelTest {
     }
 
     @Test
-    void moveFallingPiece() {
+    void moveFallingPieceTest() {
         TetrisModel model = new TetrisModel();
 
         boolean resultat;
