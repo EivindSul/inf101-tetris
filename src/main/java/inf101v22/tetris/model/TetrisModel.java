@@ -100,6 +100,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return true;
     }
 
+    /**
+     * Drops current piece to bottom
+     * @return Always true.
+     */
     @Override
     public boolean dropPiece() {
         while (true){
@@ -111,6 +115,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return true;
     }
 
+    /**
+     * Creates new piece, increments piecesSpawned to reduce timer, checks if game is lost. 
+     * @return True if new piece is allowed to spawn. False if spot is taken.
+     */
     private boolean newFallingPiece() {
         PositionedPiece newPiece = posFac.getNextPositionedPiece();
         if (!this.legalMove(newPiece)){
@@ -150,6 +158,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return interval; 
     }
 
+    /**
+     * Moves current piece one tile down. If unable to move, glue piece.
+     */
     @Override
     public void clockTick() {
         if(!this.moveFallingPiece(0, 1)){
@@ -157,6 +168,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         }
     }
 
+    /**
+     * @return True if tile is allowed to move down one tile. 
+     */
     @Override
     public boolean checkLegalBelow() {
         PositionedPiece checkPiece = posPiece;
@@ -167,6 +181,4 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     public int getScore() {
         return brett.getScore();
     }
-
-    
 }
