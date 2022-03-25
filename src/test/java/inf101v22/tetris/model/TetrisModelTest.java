@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 // Jobbet litt med Brage Aasen her. Han har forskjellig struktur på konstruktør, men eg kjører ganske like tester her. 
-public class JavaModelTest {
+public class TetrisModelTest {
     
     // Sjekker at model lager riktig størrelse brett. 
     @Test
