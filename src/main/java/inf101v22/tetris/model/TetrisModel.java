@@ -15,7 +15,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     private PositionedPiece posPiece;
     private PositionedPieceFactory posFac;
     private int startInterval = 1000; // Intervallet imellom flytting i starten er 1 sekund
-    private int piecesSpawned = 1;
+    int piecesSpawned = 1;
     public int score;
     public GameScreen GameScreen;
 
@@ -119,7 +119,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
      * Creates new piece, increments piecesSpawned to reduce timer, checks if game is lost. 
      * @return True if new piece is allowed to spawn. False if spot is taken.
      */
-    private boolean newFallingPiece() {
+    boolean newFallingPiece() {
         PositionedPiece newPiece = posFac.getNextPositionedPiece();
         if (!this.legalMove(newPiece)){
             this.GameScreen = inf101v22.tetris.model.GameScreen.GAME_OVER;
