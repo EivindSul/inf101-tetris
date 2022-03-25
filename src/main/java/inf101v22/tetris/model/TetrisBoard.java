@@ -12,7 +12,11 @@ public class TetrisBoard<flis> extends Grid<Tile> {
     public TetrisBoard(int rows, int cols, Tile type) {
         super(rows, cols, type);
     }
-    
+    /**
+     * Checks if a row has any black tiles in it.
+     * @param row 
+     * @return True if row includes a black tile. False if no black tiles
+     */
     // Sjekker ikke etter tomme ruter, men heller etter svarte. Det er i praksis det samme, siden min default-verdi er en svart Tile. 
     private boolean checkForBlackTiles(int row) {
         // Sjekker hver rute i rekken. Hvis det finnes en eneste svart, så trenger vi ikke å vite mer, så den returnerer true.
@@ -36,7 +40,10 @@ public class TetrisBoard<flis> extends Grid<Tile> {
             this.set(coordinate, value);
         }
     }
-
+    /**
+     * Removes a row, moves all above rows 1 down
+     * @param deadRow Row
+     */
     // Skal flytte alle rader over den døde ned med en.
     private void killRow(int deadRow){
         for (int j = deadRow; j > 0; j--) {
@@ -49,7 +56,9 @@ public class TetrisBoard<flis> extends Grid<Tile> {
             }
         }
     }
-
+    /**
+     * Removes all rows not containing a black tile, i.e. all full rows. Adds these to score. 
+     */
     public void removeFullRows(){
         // Sjekker alle rows for fulle rader. Hvis BlackTiles metoden returnerer false, er rekken full.
         int streak = 0;

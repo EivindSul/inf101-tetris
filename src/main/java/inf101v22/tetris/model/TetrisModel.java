@@ -52,6 +52,10 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return this.posPiece;
     }
 
+    /**
+     * Moves a piece, changes its coordinates.
+     * @return True if move is successful.
+     */
     @Override
     public boolean moveFallingPiece(int deltaRow, int deltaCol) {
         PositionedPiece movedPiece = posPiece.movedPiece(deltaRow, deltaCol);
@@ -61,7 +65,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         }
         return returnValue;
     }
-
+    /**
+     * Rotates piece counter-clockwise.
+     */
     @Override
     public boolean rotatePiece() {
         PositionedPiece rotatedPiece = posPiece.rotatePiece();
@@ -117,7 +123,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
             return true;
         }
     }
-
+    /**
+     * Removes piece from posPiece, adds it to brett. Creates new falling piece.
+     */
     private void gluePiece(){
         for (CoordinateItem<Tile> coordinateItem : this.posPiece) {
             Coordinate coordinate = coordinateItem.coordinate;
@@ -133,6 +141,9 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return this.GameScreen;
     }
 
+    /**
+     * @return The interval between tile drop, based on amount of tiles spawned total.
+     */
     @Override
     public int getInterval() {
         int interval =(int)Math.round(this.startInterval * (Math.pow(0.99, piecesSpawned)));

@@ -8,11 +8,18 @@ public class PositionedPieceFactory {
     
     int centerCol;
 
-    // Dette er litt forskjellig i forhold til hva oppgaven ber om, men det var forvirrende beskrivelse, så eg bare lagde det eg syntes var logisk.
+    /**
+     * 
+     * @param center - The x-value that the pieces will spawn at.
+     */
     public void setCenterColumn(int center){
         this.centerCol = center;
     }
 
+    /**
+     * Gets a new random piece, gives it coordinates to the top middle of board. 
+     * @return A random PositionedPiece form the list of available pieces.
+     */
     public PositionedPiece getNextPositionedPiece(){
         PieceShape piece;
         PositionedPiece posPiece;

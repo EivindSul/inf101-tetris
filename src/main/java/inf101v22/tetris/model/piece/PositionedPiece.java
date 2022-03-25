@@ -15,6 +15,11 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     private Coordinate coord;
     private PieceShape shape;
 
+    /**
+     * Constructor for PieceShape. Assigns position on the board to a given shape.
+     * @param shape Pieceshape
+     * @param coord Coordinate for upper-left tile of piece
+     */
     PositionedPiece(PieceShape shape, Coordinate coord){
         this.width = shape.getWidth();
         this.height = shape.getHeight();
@@ -23,6 +28,12 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         this.shape = shape;
     }
 
+    /**
+     * Returns the same piece with new coordinates, moved in the direction specified in arguments.
+     * @param deltaRow Movement up or down, down is positive
+     * @param deltaCol Movement left or right, right is positive
+     * @return PositionedPiece with new coordinates.
+     */
     public PositionedPiece movedPiece(int deltaRow, int deltaCol){
 
         int row = this.coord.row + deltaRow;
@@ -34,8 +45,12 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         return newPiece;
     }
 
+    /**
+     * Rotates piece counter-clockwise. Remember to check if legal.
+     * @return PositionedPiece that is rotated
+    */
     public PositionedPiece rotatePiece(){
-        
+
         PieceShape rotated = this.shape.createRotated();
 
         int rotatedHeightAdjusted = -1 + rotated.getHeight() / 2;
@@ -48,6 +63,10 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         return rotatedPositioned;
     }
 
+    /**
+     * Changes the active piece to a test shape. Moves the piece slightly to the right, does not rotate properly either. Remember to check if legal.
+     * @return PositionedPiece with new shape
+     */
     public PositionedPiece test_shape(){
         PieceShape test = PieceShape.test_shape;
         PositionedPiece PositionedShape = new PositionedPiece(test, this.coord);
