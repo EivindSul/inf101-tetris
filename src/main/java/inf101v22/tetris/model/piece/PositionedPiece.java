@@ -9,11 +9,11 @@ import inf101v22.tetris.model.Tile;
 
 public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
 
-    int width;
-    int height;
-    Tile tile;
-    Coordinate coord;
-    PieceShape shape;
+    private int width;
+    private int height;
+    private Tile tile;
+    private Coordinate coord;
+    private PieceShape shape;
 
     PositionedPiece(PieceShape shape, Coordinate coord){
         this.width = shape.getWidth();
@@ -35,6 +35,7 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     }
 
     public PositionedPiece rotatePiece(){
+        
         PieceShape rotated = this.shape.createRotated();
 
         int rotatedHeightAdjusted = -1 + rotated.getHeight() / 2;
@@ -56,7 +57,7 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
     @Override
     public Iterator<CoordinateItem<Tile>> iterator() {
         ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
-        // HVORFOR ER X COORD.COL I LINJE 60, MEN EG MÅ HA Y+COL FOR Å FÅ BRIKKENE TIL Å FALLE NEDOVER I LINJE 65
+        // HVORFOR ER X COORD.COL I LINJE 60, MEN EG MÅ HA Y+COL FOR Å FÅ BRIKKENE TIL Å FALLE NEDOVER I LINJE 65. FORVIRRET PLEASE IGNORER DET
         int x = this.coord.col;
         int y = this.coord.row;
         for (int row = 0; row < height; row++) {
@@ -69,20 +70,4 @@ public class PositionedPiece implements Iterable<CoordinateItem<Tile>>{
         }
         return itList.iterator();
     }
-    // @Override
-    // public Iterator<CoordinateItem<Tile>> iterator() {
-    //     // TODO fiks uoversiktlige navn, x, y, i, j, row, col henger ikke sammen
-    //     ArrayList<CoordinateItem<Tile>> itList = new ArrayList<>();
-    //     int x = this.coord.col;
-    //     int y = this.coord.row;
-    //     for (int i = 0; i < height; i++) {
-    //         for (int j = 0; j < width; j++) {
-    //             if (this.shape.getShape()[i][j]){
-    //                 Coordinate coor = new Coordinate(x+i, y+j);
-    //                 itList.add(new CoordinateItem<Tile>(coor, this.tile));
-    //             }
-    //         }
-    //     }
-    //     return itList.iterator();
-    // }
 }

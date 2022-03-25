@@ -7,13 +7,12 @@ import inf101v22.tetris.model.Tile;
 
 public class PieceShape {
 
-
-    public Tile rute;
-    public boolean[][] bul;
+    private Tile rute;
+    private boolean[][] shape;
 
     private PieceShape(Tile tile, boolean[][] bool){
         this.rute = tile;
-        this.bul = bool;
+        this.shape = bool;
     }
 
     public Tile getTile(){
@@ -21,15 +20,15 @@ public class PieceShape {
     }
 
     public int getWidth(){
-        return bul[0].length;
+        return shape[0].length;
     }
 
     public int getHeight(){
-        return bul.length;
+        return shape.length;
     }
 
     public boolean[][] getShape(){
-        return bul;
+        return shape;
     }
 
     public PieceShape createRotated(){

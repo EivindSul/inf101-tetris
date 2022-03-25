@@ -10,7 +10,6 @@ public class PositionedPieceFactory {
 
     // Dette er litt forskjellig i forhold til hva oppgaven ber om, men det var forvirrende beskrivelse, så eg bare lagde det eg syntes var logisk.
     public void setCenterColumn(int center){
-        // TODO Sjekk om det er inni brettet kanskje? ikke helt nødvendig tho
         this.centerCol = center;
     }
 

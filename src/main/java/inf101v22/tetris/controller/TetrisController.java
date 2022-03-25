@@ -23,7 +23,7 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
         this.setDelay();
         this.view.addKeyListener(this);
         this.timer.start();
-        // this.song.run(); EG GIDDER IKKE SANGEN MER
+        this.song.run(); // EG GIDDER IKKE SANGEN MER FÅ DEN TIL Å SLUTTE
     }
 
     @Override
@@ -32,34 +32,29 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
         if (this.controllable.getGameScreen() == GameScreen.ACITVE_GAME){
 
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                // Left arrow was pressed
                 this.controllable.moveFallingPiece(-1, 0);
                 if(!this.controllable.checkLegalBelow()){
                     timer.restart();
                 }
             }
             else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                // Right arrow was pressed
                 this.controllable.moveFallingPiece(1, 0);
                 if(!this.controllable.checkLegalBelow()){
                     timer.restart();
                 }
             }
             else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                // Down arrow was pressed
                 if(this.controllable.moveFallingPiece(0, 1)){
                     timer.restart();
                 }
             }
             else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                // Up arrow was pressed
                 this.controllable.rotatePiece();
                 if(!this.controllable.checkLegalBelow()){
                     timer.restart();
                 }
             }
             else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                // Spacebar was pressed
                 this.controllable.dropPiece();
                 timer.restart();
             }        
@@ -70,8 +65,8 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
             // else if (e.getKeyCode() == KeyEvent.VK_O) {
             //     this.controllable.clockTick();
             // }
+
             this.view.repaint();
-        
         }
     }
 
@@ -96,8 +91,8 @@ public class TetrisController implements java.awt.event.KeyListener, java.awt.ev
 
     public void setDelay(){
         int interval = controllable.getInterval();
-        timer.setDelay(interval);
-        timer.setInitialDelay(interval);
+        this.timer.setDelay(interval);
+        this.timer.setInitialDelay(interval);
     }
     
 }

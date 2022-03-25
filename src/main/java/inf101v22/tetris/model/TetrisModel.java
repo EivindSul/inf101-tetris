@@ -11,23 +11,20 @@ import inf101v22.tetris.view.TetrisViewable;
 
 public class TetrisModel implements TetrisViewable, TetrisControllable{
 
-    public TetrisBoard<Tile> brett;
-    public PositionedPiece posPiece;
-    public PositionedPieceFactory posFac;
-    public int startInterval = 1000; // Intervallet imellom flytting i starten er 1 sekund
-    public int piecesSpawned = 1;
+    private TetrisBoard<Tile> brett;
+    private PositionedPiece posPiece;
+    private PositionedPieceFactory posFac;
+    private int startInterval = 1000; // Intervallet imellom flytting i starten er 1 sekund
+    private int piecesSpawned = 1;
     public int score;
     public GameScreen GameScreen;
 
-
-
     public TetrisModel(){
-        final char a = ' ';
         this.GameScreen = inf101v22.tetris.model.GameScreen.ACITVE_GAME;
-        this.brett = new TetrisBoard<Tile>(15, 10, new Tile(Color.black, a));
+        this.brett = new TetrisBoard<Tile>(15, 10, new Tile(Color.black, ' '));
         this.posFac = new PositionedPieceFactory();
-        posFac.setCenterColumn(brett.getCols() / 2);
-        posPiece = posFac.getNextPositionedPiece();
+        this.posFac.setCenterColumn(brett.getCols() / 2);
+        this.posPiece = posFac.getNextPositionedPiece();
 
         // brett.set(new Coordinate(0,0), new Tile(Color.red, 'a'));
         // brett.set(new Coordinate(14,0), new Tile(Color.blue, 'a'));
@@ -58,40 +55,33 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
     @Override
     public boolean moveFallingPiece(int deltaRow, int deltaCol) {
         PositionedPiece movedPiece = posPiece.movedPiece(deltaRow, deltaCol);
-        if (this.legalMove(movedPiece)){
+        boolean returnValue = this.legalMove(movedPiece);
+        if (returnValue){
             this.posPiece = movedPiece;
-            return true;
         }
-        else {
-            return false;
-        }
+        return returnValue;
     }
 
     @Override
     public boolean rotatePiece() {
         PositionedPiece rotatedPiece = posPiece.rotatePiece();
-        if(this.legalMove(rotatedPiece)){
+        boolean returnValue = this.legalMove(rotatedPiece);
+        if (returnValue){
             this.posPiece = rotatedPiece;
-            return true;
         }
-        else{
-            return false;
-        }
-
+        return returnValue;
     }
 
     public boolean PressP() {
         PositionedPiece P = posPiece.test_shape();
-        if(this.legalMove(P)){
+        boolean returnValue = this.legalMove(P);
+        if (returnValue){
             this.posPiece = P;
-            return true;
         }
-        else{
-            return false;
-        }
+        return returnValue;
     }
 
-    public boolean legalMove(PositionedPiece piece){
+    private boolean legalMove(PositionedPiece piece){
         for (CoordinateItem<Tile> coordinateItem : piece) {
             Coordinate kord = coordinateItem.coordinate;
             if (!brett.coordinateIsOnGrid(kord)){
@@ -115,7 +105,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         return true;
     }
 
-    public boolean newFallingPiece() {
+    private boolean newFallingPiece() {
         PositionedPiece newPiece = posFac.getNextPositionedPiece();
         if (!this.legalMove(newPiece)){
             this.GameScreen = inf101v22.tetris.model.GameScreen.GAME_OVER;
@@ -128,7 +118,7 @@ public class TetrisModel implements TetrisViewable, TetrisControllable{
         }
     }
 
-    public void gluePiece(){
+    private void gluePiece(){
         for (CoordinateItem<Tile> coordinateItem : this.posPiece) {
             Coordinate coordinate = coordinateItem.coordinate;
             Tile value = coordinateItem.item;

@@ -6,12 +6,12 @@ import inf101v22.tetris.model.Tile;
 
 public interface TetrisViewable {
     
-    public int getRows();
-    public int getCols();
+    int getRows();
+    int getCols();
 
     Iterable<CoordinateItem<Tile>> TilesOnBoard();
     Iterable<CoordinateItem<Tile>> PieceOnBoard();
 
-    public GameScreen getGameScreen();
-    public int getScore(); 
+    GameScreen getGameScreen();
+    int getScore(); 
 }
