@@ -13,42 +13,30 @@ import java.awt.Font;
 
 public class TetrisView extends JComponent {
     {
-        // This code (between curly braces) is executed when an object is
-        // created (before the call to the constructor, if one exists). 
-        
-        // The call to setFocusable enables the panel to receive events from
-        // the user, such as key-presses and mouse movements.
         this.setFocusable(true);
     }
-    public TetrisViewable viewable;
+    private TetrisViewable viewable;
 
     public TetrisView(TetrisViewable viewable){
         this.viewable = viewable;
     }
 
-    // The paint method is called by the Java Swing framework every time either
-    // -- the window opens or resizes, or
-    // -- someone calls .repaint() on this object (note: do NOT call paint
-    // directly), or
-    // -- for some other reason Java Swing believes it is time for painting the
-    // canvas.
     @Override
     public void paint(Graphics canvas) {
         super.paint(canvas);
         this.drawTetrisBoard(canvas, 2, 2, this.getWidth(), this.getHeight(), 2);
     }
 
-    public void drawTetrisBoard(Graphics canvas, int x, int y, int width, int height, int padding){
+    private void drawTetrisBoard(Graphics canvas, int x, int y, int width, int height, int padding){
         drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.TilesOnBoard());
         drawBoardWithPad(canvas, x, y, width - padding, height - padding, padding, this.viewable.PieceOnBoard());
         if (viewable.getGameScreen() == GameScreen.GAME_OVER){
             drawGameOverScreen(canvas);
         }
     }
+    // Denne er sterkt inspirert, kanskje helt lik Magnus Brørby sin. Han hjalp meg her, siden eg forsto ikke oppgaveteksten i det hele tatt. 
     private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding, Iterable<CoordinateItem<Tile>> piecePaint) {
-    // private void drawBoardWithPad(Graphics canvas, int boardX, int boardY, int boardWidth, int boardHeight, int padding) {
 
-        //for (CoordinateItem<Tile> coordinateItem : this.viewable.TilesOnBoard()) {
         for (CoordinateItem<Tile> coordinateItem : piecePaint) {
         int row = coordinateItem.coordinate.row;
             int col = coordinateItem.coordinate.col;

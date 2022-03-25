@@ -8,8 +8,10 @@ public class Grid<E> implements IGrid<E>{
     ArrayList<ArrayList<E>> grid;
     public final int rows;
     public final int cols;
-    public E item;
+    private E item;
 
+
+    // Denne er ubrukt. Den finnes bare fordi oppgaven og andres løsninger hadde den, og den kan være nyttig hvis spillet skal utvides.
     public Grid(int rows, int cols){
         this(rows,cols,null);
     }
